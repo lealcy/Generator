@@ -6,7 +6,22 @@ namespace Generator
     {
         static void Main(string[] args)
         {
-            Generator g = new Generator("Hello World!", new Random());
+            Generator g = new Generator(
+                Generator.GenomeFromString("Hello World"),
+                Generator.GenePoolFromRange(' ', '~'),
+                10000,
+                1000,
+                0.005,
+                new Random()
+            );
+
+            while(!g.HasBestFit())
+            {
+                Console.WriteLine(g);
+                g.Evolve();
+            }
+
+            Console.ReadKey(true);
         }
     }
 }
