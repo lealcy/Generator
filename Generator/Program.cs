@@ -11,7 +11,7 @@ namespace Generator
                 Generator.GenePoolFromRange(' ', '~'),
                 10000,
                 1000,
-                0.005,
+                0.0005,
                 new Random()
             );
 
@@ -20,8 +20,7 @@ namespace Generator
                 Console.WriteLine(g);
                 g.Evolve();
             }
-
-            Console.ReadKey(true);
+            Console.WriteLine(g);
         }
     }
 }

@@ -12,7 +12,8 @@ namespace Generator
         public readonly Random RandomSource;
         public int[][] Population;
 
-        public bool MutationOccurred = false;
+        public int Generation = 1;
+        public int MutationsOccurred = 0;
 
         public Generator(int[] targetGenome, int[] genePool, int populationSize, int bestGroupLength, double mutationChange, Random randomSource)
         {
@@ -41,13 +42,13 @@ namespace Generator
         public override string ToString()
         {
             return String.Format(
-                "Target: '{0}', Best Fit: '{1}', Mutation Occured: {2}",
+                "Generation: {0}, Target: '{1}', Best Fit: '{2}', Mutations Occured: {3}",
+                Generation,
                 GenomeToString(TargetGenome),
                 GenomeToString(Population[0]),
-                MutationOccurred
+                MutationsOccurred
             );
         }
-
 
         public void Populate()
         {
@@ -92,8 +93,8 @@ namespace Generator
 
                 if (RandomSource.NextDouble() < MutationChange)
                 {
-                    MutationOccurred = true;
-                    newInd[i] = GenePool[RandomSource.Next(0, GenePool.Length)];
+                    MutationsOccurred++;
+                    newInd[i] = GetRandomGene ();
                 }
                 else if (ind1[i] == ind2[i])
                 {
@@ -101,17 +102,17 @@ namespace Generator
                 }
                 else
                 {
-                    newInd[i] = RandomSource.Next(0, 1) == 0 ? ind1[1] : ind1[2];
+                    newInd[i] = RandomSource.Next(0, 1) == 0 ? ind1[i] : ind2[i];
                 }
             }
-
             return newInd;
         }
 
         public void Evolve()
         {
             int[][] newPop = new int[PopulationSize][];
-            MutationOccurred = false;
+            Generation++;
+            MutationsOccurred = 0;
             for (int i = 0; i < PopulationSize; i++)
             {
                 newPop[i] = Breed(
@@ -121,6 +122,12 @@ namespace Generator
             }
             Population = newPop;
             Array.Sort(Population, Weight);
+        }
+
+        public int GetRandomGene()
+        {
+            int gene = GenePool [RandomSource.Next (0, GenePool.Length)];
+            return gene;
         }
 
         public static int[] GenomeFromString(string text)

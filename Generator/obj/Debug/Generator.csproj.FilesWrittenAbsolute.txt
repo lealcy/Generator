@@ -1,0 +1,7 @@
+/home/lealcy/Dev/Generator/Generator/obj/Debug/.NETFramework,Version=v4.6.1.AssemblyAttribute.cs
+/home/lealcy/Dev/Generator/Generator/bin/Debug/Generator.exe.config
+/home/lealcy/Dev/Generator/Generator/bin/Debug/Generator.exe.mdb
+/home/lealcy/Dev/Generator/Generator/bin/Debug/Generator.exe
+/home/lealcy/Dev/Generator/Generator/obj/Debug/Generator.exe
+/home/lealcy/Dev/Generator/Generator/obj/Debug/Generator.exe.mdb
+/home/lealcy/Dev/Generator/Generator/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
